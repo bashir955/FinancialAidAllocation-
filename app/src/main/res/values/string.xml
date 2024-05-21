@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="drawer_toggle">Open navigation drawer</string>
+    <string name="admin_drawer_toggle">Open admin drawer</string>
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/anav_budget"
+        android:title="Budget" />
+    <item
+        android:id="@+id/anav_student"
+        android:title="Student" />
+    <item
+        android:id="@+id/anav_policies"
+        android:title="Policies" />
+    <item
+        android:id="@+id/anav_faculty_members"
+        android:title="Faculty Members" />
+    <item
+        android:id="@+id/anav_committee_members"
+        android:title="Committee Members" />
+    <item
+        android:id="@+id/anav_logout"
+        android:title="Logout" />
+</menu>

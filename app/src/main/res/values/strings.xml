@@ -1,0 +1,9 @@
+<resources>
+
+
+    <string-array name="degree_array">
+        <item>Msc</item>
+        <item>Bsc</item>
+    </string-array>
+
+</resources>

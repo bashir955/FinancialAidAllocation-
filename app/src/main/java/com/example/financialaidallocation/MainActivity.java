@@ -48,7 +48,7 @@ private Button login;
                     startActivity(intent);
 
                 }
-                else if (username.equals("Hamid") && arid.equals("2020-Arid-3111")) {
+                else if (username.equals("Hamid") && arid.equals("123")) {
                     // Navigate to AdminDashboardActivity
                     Intent intent = new Intent(MainActivity.this, AdminDashboard.class);
                     Toast.makeText(MainActivity.this, "sai", Toast.LENGTH_SHORT).show();

@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -26,6 +27,79 @@ public class AdminDashboard extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_admin_dashboard);
         draweradminLayout = findViewById(R.id.admindrawerlayout);
+
+        CardView needbaseapplication = findViewById(R.id.needbase_application);
+
+        // Set an OnClickListener on the CardView
+        needbaseapplication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the MeritBaseShortlistingActivity
+                Intent intent = new Intent(AdminDashboard.this, NeedbaseApplication.class);
+                startActivity(intent);
+            }
+        });
+        CardView acceptedapplication = findViewById(R.id.accepted_application);
+
+        // Set an OnClickListener on the CardView
+        acceptedapplication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the MeritBaseShortlistingActivity
+                Intent intent = new Intent(AdminDashboard.this, AcceptedApplication.class);
+                startActivity(intent);
+            }
+        });
+
+        CardView rejectedapplication = findViewById(R.id.rejected_application);
+
+        // Set an OnClickListener on the CardView
+        rejectedapplication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the MeritBaseShortlistingActivity
+                Intent intent = new Intent(AdminDashboard.this, RejectedApplication.class);
+                startActivity(intent);
+            }
+        });
+
+        CardView commiteemember = findViewById(R.id.Commitee_Member);
+
+        // Set an OnClickListener on the CardView
+        commiteemember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the MeritBaseShortlistingActivity
+                Intent intent = new Intent(AdminDashboard.this, CommiteeMember.class);
+                startActivity(intent);
+            }
+        });
+
+        CardView grader = findViewById(R.id.assigngrader);
+
+        // Set an OnClickListener on the CardView
+        grader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the MeritBaseShortlistingActivity
+                Intent intent = new Intent(AdminDashboard.this, Grader.class);
+                startActivity(intent);
+            }
+        });
+
+
+        // Find the CardView by its ID
+        CardView meritBaseShort = findViewById(R.id.meritbase_short);
+
+        // Set an OnClickListener on the CardView
+        meritBaseShort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the MeritBaseShortlistingActivity
+                Intent intent = new Intent(AdminDashboard.this, Meritbaseshortlisting.class);
+                startActivity(intent);
+            }
+        });
 
         adminnavigationView = findViewById(R.id.admin_navigationView);
         adminnavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

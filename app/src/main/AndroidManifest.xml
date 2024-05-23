@@ -13,6 +13,24 @@
         android:theme="@style/Theme.Material3.DayNight.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".Grader"
+            android:exported="false" />
+        <activity
+            android:name=".CommiteeMember"
+            android:exported="false" />
+        <activity
+            android:name=".RejectedApplication"
+            android:exported="false" />
+        <activity
+            android:name=".AcceptedApplication"
+            android:exported="false" />
+        <activity
+            android:name=".NeedbaseApplication"
+            android:exported="false" />
+        <activity
+            android:name=".Meritbaseshortlisting"
+            android:exported="false" />
+        <activity
             android:name=".AdminDashboard"
             android:exported="false" />
         <activity

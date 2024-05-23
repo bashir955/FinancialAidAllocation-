@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AcceptedApplication">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:id="@+id/AcceptedApplication"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittextbg"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:hint="Accepted Application"
+        android:textSize="18sp" />
+
+
+    <!-- Search bar -->
+    <LinearLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="8dp"
+        android:background="@drawable/edittextbg">
+
+        <!-- Search EditText -->
+        <EditText
+            android:id="@+id/search_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Search..."
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:padding="5dp" />
+
+        <!-- Search icon -->
+        <ImageView
+            android:id="@+id/search_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_search"
+            android:contentDescription="Search"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edittextbg"
+        android:padding="5dp"
+        android:layout_marginBottom="25dp"
+        android:layout_height="wrap_content" />
+</LinearLayout>

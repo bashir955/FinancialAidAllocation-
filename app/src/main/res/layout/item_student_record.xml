@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/edittextbg"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Circular profile image, student name, and ARID number -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Circular profile image -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/person"
+            android:layout_gravity="center"/>
+
+        <!-- Vertical layout for student name and ARID number -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <!-- Student name -->
+            <TextView
+                android:id="@+id/student_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Student Name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"/>
+
+            <!-- ARID number -->
+            <TextView
+                android:id="@+id/arid_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ARID No."
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:paddingTop="4dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

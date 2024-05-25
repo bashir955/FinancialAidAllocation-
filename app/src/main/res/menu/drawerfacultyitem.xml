@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fSwitchtoCommittee"
+        android:title="Switch to Committee" />
+    <item
+        android:id="@+id/flogout"
+        android:title="Logout" />
+</menu>

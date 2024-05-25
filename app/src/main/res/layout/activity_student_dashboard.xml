@@ -36,15 +36,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/std_name"
             android:layout_gravity="center_horizontal"
             android:text="Muhammad Bashir"
             android:paddingLeft="50dp"
             android:textSize="15dp" />
         <TextView
+            android:id="@+id/std_aridno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="2020-Arid-3699"
+            android:layout_marginTop="5dp"
             android:paddingLeft="50dp"
             android:textSize="15dp" />
         <TextView
@@ -56,11 +59,13 @@
             android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
+            android:id="@+id/application_status"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Not Submitted"
             android:paddingLeft="50dp"
-            android:textSize="15dp" />
+            android:textSize="15dp"/>
+
     </LinearLayout>
 
     <androidx.gridlayout.widget.GridLayout

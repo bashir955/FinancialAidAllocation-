@@ -1,4 +1,4 @@
-package com.example.financialaidallocation;
+package com.example.financialaidallocation.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.financialaidallocation.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class AdminDashboard extends AppCompatActivity {
@@ -109,6 +110,21 @@ public class AdminDashboard extends AppCompatActivity {
                 if (itemId == R.id.anav_logout) {
                     // Handle the logout action
                     Intent intent = new Intent(AdminDashboard.this, MainActivity.class);
+                    startActivity(intent);
+                    finish(); // Optional: close the current activity
+                    return true;
+                } else if (itemId == R.id.anav_budget) {
+                    Intent intent = new Intent(AdminDashboard.this, Budget.class);
+                    startActivity(intent);
+                    finish(); // Optional: close the current activity
+                    return true;
+                }else if (itemId == R.id.anav_student) {
+                    Intent intent = new Intent(AdminDashboard.this, StudentRecord.class);
+                    startActivity(intent);
+                    finish(); // Optional: close the current activity
+                    return true;
+                }else if (itemId == R.id.anav_policies) {
+                    Intent intent = new Intent(AdminDashboard.this, Policies.class);
                     startActivity(intent);
                     finish(); // Optional: close the current activity
                     return true;

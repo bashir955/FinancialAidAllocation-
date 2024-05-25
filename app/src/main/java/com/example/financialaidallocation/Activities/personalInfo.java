@@ -1,4 +1,4 @@
-package com.example.financialaidallocation;
+package com.example.financialaidallocation.Activities;
 
 import static com.example.financialaidallocation.R.id.evidancetvFilePicker;
 import static com.example.financialaidallocation.R.id.housetvFilePicker;
@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.financialaidallocation.R;
 
 public class personalInfo extends AppCompatActivity {
 

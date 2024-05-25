@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FDF9F9</color>
+
+    <color name="accept_button_color">#4CAF50</color> <!-- Green color -->
+    <color name="reject_button_color">#F44336</color> <!-- Red color -->
+
 </resources>
+

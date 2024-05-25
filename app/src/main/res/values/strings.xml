@@ -5,5 +5,18 @@
         <item>Msc</item>
         <item>Bsc</item>
     </string-array>
+    <string name="document_image_desc">Document Image</string>
 
+
+    <string-array name="policyfor">
+        <item>Meritbase</item>
+        <item>Needbase</item>
+    </string-array>
+
+    <string-array name="Studentwillget">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 </resources>

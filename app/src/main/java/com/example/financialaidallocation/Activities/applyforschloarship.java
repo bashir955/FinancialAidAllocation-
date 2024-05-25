@@ -1,31 +1,26 @@
-package com.example.financialaidallocation;
+package com.example.financialaidallocation.Activities;
 
-import static com.example.financialaidallocation.R.id.housetvFilePicker;
-import static com.example.financialaidallocation.R.id.salarytvFilePicker;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.financialaidallocation.R;
+
 public class applyforschloarship extends AppCompatActivity {
     private RadioGroup rgParentsDetail;
+    private TextView stdNameTextView;
+    private TextView stdAridNoTextView;
     private LinearLayout layoutParentsDetail;
     private LinearLayout layoutGuardianInfo;
 
@@ -34,6 +29,9 @@ public class applyforschloarship extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_applyforschloarship);
+
+
+
         // Find the button by its ID
         Button nextButton = findViewById(R.id.nextButton);
         // Set an OnClickListener for the button
@@ -46,25 +44,25 @@ public class applyforschloarship extends AppCompatActivity {
             }
         });
 
-        Spinner semesterSpinner = findViewById(R.id.semesterSpinner);
+//        Spinner semesterSpinner = findViewById(R.id.semesterSpinner);
         LinearLayout cgpaLayout = findViewById(R.id.textViewCGPA);
 
-        semesterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedSemester = (String) parentView.getItemAtPosition(position);
-                if (selectedSemester.equals("1st")) {
-                    cgpaLayout.setVisibility(View.GONE);
-                } else {
-                    cgpaLayout.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing
-            }
-        });
+//        semesterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+//                String selectedSemester = (String) parentView.getItemAtPosition(position);
+//                if (selectedSemester.equals("1st")) {
+//                    cgpaLayout.setVisibility(View.GONE);
+//                } else {
+//                    cgpaLayout.setVisibility(View.VISIBLE);
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parentView) {
+//                // Do nothing
+//            }
+//        });
 
 
         // Initialize views
@@ -74,7 +72,7 @@ public class applyforschloarship extends AppCompatActivity {
 
         rgParentsDetail.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if (checkedId == R.id.rbFatherAlive) {
                     // Show Parents Detail section
                     layoutParentsDetail.setVisibility(View.VISIBLE);
@@ -87,18 +85,18 @@ public class applyforschloarship extends AppCompatActivity {
             }
         });
 
-        // Create an array of course names (you can replace this with your own data)
-        String[] courseNames = {"1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"};
-
-        // Create an ArrayAdapter to bind data to the spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, courseNames);
-
-        // Set the dropdown layout style
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Attach the adapter to the spinner
-        semesterSpinner.setAdapter(adapter);
+//        // Create an array of course names (you can replace this with your own data)
+//        String[] courseNames = {"1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"};
+//
+//        // Create an ArrayAdapter to bind data to the spinner
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+//                android.R.layout.simple_spinner_item, courseNames);
+//
+//        // Set the dropdown layout style
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        // Attach the adapter to the spinner
+//        semesterSpinner.setAdapter(adapter);
 
         TextView salarytvFilePicker = findViewById(R.id.salarytvFilePicker);
         salarytvFilePicker.setOnClickListener(new View.OnClickListener() {

@@ -13,6 +13,24 @@
         android:theme="@style/Theme.Material3.DayNight.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".FacultyMemberDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".AddPolicies"
+            android:exported="false" />
+        <activity
+            android:name=".AddStudent"
+            android:exported="false" />
+        <activity
+            android:name=".Policies"
+            android:exported="false" />
+        <activity
+            android:name=".StudentRecord"
+            android:exported="false" />
+        <activity
+            android:name=".Budget"
+            android:exported="false" />
+        <activity
             android:name=".Grader"
             android:exported="false" />
         <activity

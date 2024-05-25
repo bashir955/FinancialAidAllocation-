@@ -34,7 +34,7 @@ public class CommitteeMemberDashboard extends AppCompatActivity {
     NavigationView navigationView;
     private RecyclerView recyclerView;
     private Spinner degreeSpinner;
-    private DocumentAdapter adapter;
+    private DocumentAdapter documentAdapter;
     private List<Document> documentList;
     private EditText searchEditText;
     private ImageView searchIcon;
@@ -88,41 +88,61 @@ public class CommitteeMemberDashboard extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Add margin between items
+        int space = getResources().getDimensionPixelSize(R.dimen.recycler_item_margin);
+        recyclerView.addItemDecoration(new ItemDecoration(space));
+
+        documentList = new ArrayList<>();
+        documentList.add(new Document(R.drawable.document, "Muhammad Ali", "2019-ARID-12345"));
+        documentList.add(new Document(R.drawable.document, "M Amir Shehzad", "2018-ARID-67890"));
+        documentList.add(new Document(R.drawable.document, "Muhammad Bashir","2020-Arid-3699"));
+        documentList.add(new Document(R.drawable.document, "Arsalan Raja","2023-Arid-4322"));
+        documentList.add(new Document(R.drawable.document, "Maria Bukhari","2021-Arid-2319"));
+        documentList.add(new Document(R.drawable.document, "Umair Malik","2020-Arid-2516"));
+
+
+        documentAdapter = new DocumentAdapter(this, documentList);
+        recyclerView.setAdapter(documentAdapter);
+
         // Sample data for demonstration
-        documentList = getSampleDocuments();
-
+//        documentList = getSampleDocuments();
         // Create and set adapter
-        adapter = new DocumentAdapter(documentList);
-        recyclerView.setAdapter(adapter);
-
+//        adapter = new DocumentAdapter(documentList);
+//        recyclerView.setAdapter(adapter);
+//        documentList = new ArrayList<>();
+//        documentList.add(new Document(R.drawable.biitlogo, "Document 1", "ARID 12345"));
+//        documentList.add(new Document(R.drawable.biitlogo, "Document 2", "ARID 67890"));
+//        // Add more documents as needed
+//        documentAdapter = new DocumentAdapter(this, documentList);
+//        recyclerView.setAdapter(DocumentAdapter);
         // Initialize SearchEditText
         searchEditText = findViewById(R.id.search_edittext);
-        searchEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // Do nothing
-            }
+//        searchEditText.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                // Do nothing
+//            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s.toString());
-            }
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                adapter.getFilter().filter(s.toString());
+//            }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                // Do nothing
-            }
-        });
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                // Do nothing
+//            }
+//        });
 
         // Initialize SearchIcon
-        searchIcon = findViewById(R.id.search_icon);
-        searchIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String query = searchEditText.getText().toString().trim();
-                adapter.getFilter().filter(query);
-            }
-        });
+//        searchIcon = findViewById(R.id.search_icon);
+//        searchIcon.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String query = searchEditText.getText().toString().trim();
+//                adapter.getFilter().filter(query);
+//            }
+//        });
 
         // Initialize DegreeSpinner
         Spinner degreeSpinner = findViewById(R.id.DegreeSpinner);
@@ -131,18 +151,18 @@ public class CommitteeMemberDashboard extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         degreeSpinner.setAdapter(adapter);
 
-        degreeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedDegree = parent.getItemAtPosition(position).toString();
-                filterByDegree(selectedDegree);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Do nothing
-            }
-        });
+//        degreeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String selectedDegree = parent.getItemAtPosition(position).toString();
+//                filterByDegree(selectedDegree);
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                // Do nothing
+//            }
+//        });
         ViewCompat.setOnApplyWindowInsetsListener(
 
                 findViewById(R.id.drawerlayout), (v, insets) ->
@@ -153,34 +173,34 @@ public class CommitteeMemberDashboard extends AppCompatActivity {
                 });
     }
 
-    private void filterByDegree(String degreeType) {
-        List<Document> filteredDocuments = new ArrayList<>();
-        for (Document document : documentList) {
-            if (document.getDegreeType().equalsIgnoreCase(degreeType)) {
-                filteredDocuments.add(document);
-            }
-        }
-        adapter.updateList(filteredDocuments);
-    }
+//    private void filterByDegree(String degreeType) {
+//        List<Document> filteredDocuments = new ArrayList<>();
+//        for (Document document : documentList) {
+//            if (document.getDegreeType().equalsIgnoreCase(degreeType)) {
+//                filteredDocuments.add(document);
+//            }
+//        }
+//        adapter.updateList(filteredDocuments);
+//    }
 
     // Method to generate sample documents
-    private List<Document> getSampleDocuments() {
-        List<Document> documents = new ArrayList<>();
-        // Add your documents here or fetch from a data source
-        // For example:
-        documents.add(new Document("Muhammad Bashir", "2020-Arid-3699","Msc"));
-        documents.add(new Document("Muhammad Ali", "2021-Arid-3534","Bsc"));
-        documents.add(new Document("M Amir Shehzad", "2022-Arid-2983","Msc"));
-        documents.add(new Document("Arsalan Raja", "2023-Arid-4322","Bsc"));
-        documents.add(new Document("Maria Bukhari", "2019-Arid-4656","Msc"));
-        documents.add(new Document("Umair Malik", "2020-Arid-2516","Bsc"));
-
-        documents.add(new Document("Ali Rehman", "2020-Arid-3699","Msc"));
-        documents.add(new Document("Kashif Rizvi", "2021-Arid-3534","Msc"));
-        documents.add(new Document("Shehzad Khan", "2022-Arid-2983","Bsc"));
-        documents.add(new Document("Bilal Khan", "2023-Arid-4322","Msc"));
-        documents.add(new Document("Nadir Ali", "2019-Arid-4656","Msc"));
-        documents.add(new Document("Nimra Baloch", "2020-Arid-2516","Bsc"));
-        return documents;
-    }
+//    private List<Document> getSampleDocuments() {
+//        List<Document> documents = new ArrayList<>();
+//        // Add your documents here or fetch from a data source
+//        // For example:
+//        documents.add(new Document("Muhammad Bashir", "2020-Arid-3699","Msc"));
+//        documents.add(new Document("Muhammad Ali", "2021-Arid-3534","Bsc"));
+//        documents.add(new Document("M Amir Shehzad", "2022-Arid-2983","Msc"));
+////        documents.add(new Document("Arsalan Raja", "2023-Arid-4322","Bsc"));
+////        documents.add(new Document("Maria Bukhari", "2019-Arid-4656","Msc"));
+////        documents.add(new Document("Umair Malik", "2020-Arid-2516","Bsc"));
+////
+////        documents.add(new Document("Ali Rehman", "2020-Arid-3699","Msc"));
+////        documents.add(new Document("Kashif Rizvi", "2021-Arid-3534","Msc"));
+////        documents.add(new Document("Shehzad Khan", "2022-Arid-2983","Bsc"));
+////        documents.add(new Document("Bilal Khan", "2023-Arid-4322","Msc"));
+////        documents.add(new Document("Nadir Ali", "2019-Arid-4656","Msc"));
+////        documents.add(new Document("Nimra Baloch", "2020-Arid-2516","Bsc"));
+//        return documents;
+//    }
 }

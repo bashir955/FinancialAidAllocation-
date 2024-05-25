@@ -50,8 +50,10 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_marginTop="15dp"
-        android:background="@drawable/edittextbg"
+
         android:padding="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginBottom="25dp"
         android:layout_height="wrap_content" />
 </LinearLayout>

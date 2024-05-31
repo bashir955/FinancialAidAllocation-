@@ -2,6 +2,7 @@
 <resources>
     <string name="drawer_toggle">Open navigation drawer</string>
     <string name="admin_drawer_toggle">Open admin drawer</string>
+    <string name="faculty_drawer_toggle">Open navigation drawer</string>
 
 
     </resources>

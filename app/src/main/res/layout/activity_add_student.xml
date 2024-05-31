@@ -2,156 +2,187 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
+    android:layout_height="wrap_content"
     android:id="@+id/main"
     android:orientation="vertical">
 
-    <!-- Profile Picture -->
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profilePicture"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/camera"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp" />
-
-    <!-- Name -->
-    <EditText
-        android:id="@+id/nameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittextbg"
-        android:hint="Name"
-        android:layout_marginTop="16dp" />
-
-    <!-- Arid No. -->
-    <EditText
-        android:id="@+id/aridNoEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Arid No."
-        android:background="@drawable/edittextbg"
-        android:layout_marginTop="16dp" />
-    <!-- Arid No. -->
-    <EditText
-        android:id="@+id/semesteredittxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Semester."
-        android:background="@drawable/edittextbg"
-        android:layout_marginTop="16dp" />
-
-    <!-- CGPA -->
-    <EditText
-        android:id="@+id/cgpaEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="CGPA"
-        android:background="@drawable/edittextbg"
-        android:layout_marginTop="16dp" />
-
-    <!-- Gender Selection -->
-    <RadioGroup
-        android:id="@+id/genderRadioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/edittextbg"
-        android:layout_marginTop="16dp">
-
-        <RadioButton
-            android:id="@+id/maleRadioButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Male" />
-
-        <RadioButton
-            android:id="@+id/femaleRadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Female" />
-    </RadioGroup>
-
-    <!-- Father Name -->
-    <EditText
-        android:id="@+id/fatherNameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Father Name"
-        android:background="@drawable/edittextbg"
-        android:layout_marginTop="16dp" />
-
-    <!-- Degree Selection -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Degree"
-            android:textStyle="bold"
-            android:textSize="18sp" />
-
-        <Spinner
-            android:id="@+id/DegreeSpinner"
-            android:layout_width="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center">
-
-        </Spinner>
-
-    </LinearLayout>
-
-    <!-- Section -->
-    <EditText
-        android:id="@+id/sectionEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittextbg"
-        android:hint="Section"
-        android:layout_marginTop="16dp" />
-
-    <!-- Password -->
-    <EditText
-        android:id="@+id/passwordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittextbg"
-        android:hint="Password"
-        android:layout_marginTop="16dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:backgroundTint="@color/reject_button_color"
-            android:text="Cancel"
-            />
-        <Button
-            android:id="@+id/button_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accept_button_color"
-           android:layout_marginLeft="100dp"
-            android:text="Add" />
+            android:orientation="vertical">
 
 
+            <!-- Header with Title -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#119992"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Add Student"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <!-- Profile Picture -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profilePicture"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/camera"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+
+                <!-- Name -->
+                <EditText
+                    android:id="@+id/nameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittextbg"
+                    android:hint="Name"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Arid No. -->
+                <EditText
+                    android:id="@+id/aridNoEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Arid No."
+                    android:background="@drawable/edittextbg"
+                    android:layout_marginTop="16dp" />
+                <!-- Arid No. -->
+                <EditText
+                    android:id="@+id/semesteredittxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Semester."
+                    android:background="@drawable/edittextbg"
+                    android:layout_marginTop="16dp" />
+
+                <!-- CGPA -->
+                <EditText
+                    android:id="@+id/cgpaEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="CGPA"
+                    android:background="@drawable/edittextbg"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Gender Selection -->
+                <RadioGroup
+                    android:id="@+id/genderRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp">
+
+                    <RadioButton
+                        android:id="@+id/maleRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Male" />
+
+                    <RadioButton
+                        android:id="@+id/femaleRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Female" />
+                </RadioGroup>
+
+                <!-- Father Name -->
+                <EditText
+                    android:id="@+id/fatherNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Father Name"
+                    android:background="@drawable/edittextbg"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Degree Selection -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Degree"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+
+                    <Spinner
+                        android:id="@+id/DegreeSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center">
+
+                    </Spinner>
+
+                </LinearLayout>
+
+                <!-- Section -->
+                <EditText
+                    android:id="@+id/sectionEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittextbg"
+                    android:hint="Section"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Password -->
+                <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittextbg"
+                    android:hint="Password"
+                    android:layout_marginTop="16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button_cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:backgroundTint="@color/reject_button_color"
+                        android:text="Cancel"
+                        />
+                    <Button
+                        android:id="@+id/button_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/accept_button_color"
+                        android:layout_marginLeft="100dp"
+                        android:text="Add" />
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+            </LinearLayout>
 
 </LinearLayout>

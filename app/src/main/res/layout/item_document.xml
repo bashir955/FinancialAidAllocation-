@@ -20,7 +20,7 @@
 
 
         <TextView
-            android:id="@+id/document_name"
+            android:id="@+id/Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
@@ -29,12 +29,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/document_aridno"
+            android:id="@+id/aridno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="4dp"
             android:text="ARID No."
             android:textSize="14sp" />
-
-
     </LinearLayout>

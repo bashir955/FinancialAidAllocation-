@@ -35,21 +35,21 @@ public class AddPolicies extends AppCompatActivity {
         topstd = findViewById(R.id.topstd);
         description = findViewById(R.id.description);
         policyspinner=findViewById(R.id.policyForSpinner);
-//        policyspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                if (position == 1) {
-//                    cgpaViews.setVisibility(View.VISIBLE);
-//                    actionButtons.setVisibility(View.VISIBLE);
-//                    description.setVisibility(View.VISIBLE);
-//                }
-//            }
+        policyspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 1) {
+                    cgpaViews.setVisibility(View.VISIBLE);
+                    actionButtons.setVisibility(View.VISIBLE);
+                    description.setVisibility(View.VISIBLE);
+                }
+            }
 
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//            }
-//        });
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         meritbaseRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

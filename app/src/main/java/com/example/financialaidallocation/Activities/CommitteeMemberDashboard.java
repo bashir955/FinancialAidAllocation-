@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
+
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.financialaidallocation.Adapters.DocumentAdapter;
+import com.example.financialaidallocation.Classes.Document;
 import com.example.financialaidallocation.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -31,8 +30,7 @@ public class CommitteeMemberDashboard extends AppCompatActivity {
     ImageButton btndrawerToogle;
     NavigationView navigationView;
     private RecyclerView recyclerView;
-    private Spinner degreeSpinner;
-    private DocumentAdapter documentAdapter;
+  //  private DocumentAdapter documentAdapter;
     private List<Document> documentList;
     private EditText searchEditText;
     private ImageView searchIcon;
@@ -42,20 +40,7 @@ public class CommitteeMemberDashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_committee_member_dashboard);
-//        Spinner degreeSpinner = findViewById(R.id.DegreeSpinner);
-//
-//        // Create a list of dummy data for the spinner
-//        List<String> Degree = new ArrayList<>();
-//        Degree.add("BSC");
-//        Degree.add("MSC");
-//        // Create an ArrayAdapter using the dummy data and a default spinner layout
-//        ArrayAdapter<String> adapterr = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Degree);
-//
-//        // Specify the layout to use when the list of choices appears
-//        adapterr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        // Apply the adapter to the spinner
-//        degreeSpinner.setAdapter(adapterr);
+
         drawerLayout = findViewById(R.id.drawerlayout);
 
         navigationView = findViewById(R.id.navigationView);
@@ -67,7 +52,7 @@ public class CommitteeMemberDashboard extends AppCompatActivity {
                     // Handle the logout action
                     Intent intent = new Intent(CommitteeMemberDashboard.this, MainActivity.class);
                     startActivity(intent);
-                    finish(); // Optional: close the current activity
+                     // Optional: close the current activity
                     return true;
                 }
                 return false;
@@ -99,8 +84,8 @@ public class CommitteeMemberDashboard extends AppCompatActivity {
         documentList.add(new Document(R.drawable.document, "Umair Malik","2020-Arid-2516"));
 
 
-        documentAdapter = new DocumentAdapter(this, documentList);
-        recyclerView.setAdapter(documentAdapter);
+      //  documentAdapter = new DocumentAdapter(this, documentList);
+       // recyclerView.setAdapter(documentAdapter);
 
         // Sample data for demonstration
 //        documentList = getSampleDocuments();
@@ -143,11 +128,11 @@ public class CommitteeMemberDashboard extends AppCompatActivity {
 //        });
 
         // Initialize DegreeSpinner
-        Spinner degreeSpinner = findViewById(R.id.DegreeSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.degree_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        degreeSpinner.setAdapter(adapter);
+//        Spinner degreeSpinner = findViewById(R.id.DegreeSpinner);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.degree_array, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        degreeSpinner.setAdapter(adapter);
 
 //        degreeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //            @Override

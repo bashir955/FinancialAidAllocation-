@@ -9,16 +9,50 @@
     tools:context=".NeedbaseApplication">
 
 
+    <!-- Header with Title -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#119992"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Needbase Application"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edittextbg"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="130dp"
-        android:id="@+id/RemainingApplication"
+        android:layout_height="wrap_content"
+        android:id="@+id/NeedbaseApplication"
         android:layout_marginTop="10dp"
-        android:background="@drawable/edittextbg"
         android:textStyle="bold"
         android:layout_gravity="center"
         android:hint="Needbase Application"
         android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="4"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="18sp" />
+    </LinearLayout>
 
 
     <!-- Search bar -->

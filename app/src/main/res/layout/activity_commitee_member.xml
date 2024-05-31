@@ -9,6 +9,25 @@
     tools:context=".CommiteeMember">
 
 
+
+    <!-- Header with Title -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#119992"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Committee Member"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
     <!-- Search bar -->
     <LinearLayout
         android:id="@+id/search_layout"

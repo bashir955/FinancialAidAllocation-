@@ -1,7 +1,12 @@
 package Api;
 import com.example.financialaidallocation.Classes.ApplicationStatusResponse;
+import com.example.financialaidallocation.Classes.ApplicationSuggestionModel;
+import com.example.financialaidallocation.Classes.BudgetModel;
+import com.example.financialaidallocation.Classes.CommitteeMemberModel;
 import com.example.financialaidallocation.Classes.DefaultResponse;
 import com.example.financialaidallocation.Classes.LoginResponse;
+import com.example.financialaidallocation.Classes.MeritbaseStudentModel;
+import com.example.financialaidallocation.Classes.StudentModel;
 import com.example.financialaidallocation.Classes.StudentResponse;
 
 import java.util.List;
@@ -14,16 +19,19 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
-    @GET("RunMe")
-    Call<String> runMe();
 
     @GET("User/Login")
     Call<LoginResponse> login(@Query("username")String username, @Query("password") String password);
+
     @GET("Student/getStudentInfo")
     Call<StudentResponse> getStudentInfo(@Query("id") int id);
+
+    @GET("Admin/MeritBaseShortListing")
+    Call<List<MeritbaseStudentModel>> getMeritBaseShortListing();
 
     @Multipart
     @POST("Student/BuildProfile")
@@ -77,5 +85,21 @@ public interface ApiService {
     Call<DefaultResponse> getMeritBasePolicies();
 
     @GET("Student/getStudentApplicationStatus")
-    Call<ApplicationStatusResponse> getStudentApplicationStatus(@Query("id") int id);
+    Call<List<ApplicationStatusResponse>> getStudentApplicationStatus(@Query("id") int id);
+
+
+    //Admin
+    @GET("Admin/GetMeritBaseShortListedStudent")
+    Call<List<MeritbaseStudentModel>> getMeritBaseShortListedStudent();
+    @GET("Admin/ApplicationSuggestions")
+    Call<List<ApplicationSuggestionModel>> getApplicationSuggestions();
+
+    @GET("Admin/CommitteeMembers")
+    Call<List<CommitteeMemberModel>> getCommitteeMembers();
+
+    @GET("Admin/getAllStudent")
+    Call<List<StudentModel>> getAllStudents();
+
+    @GET("Admin/getAllBudget")
+    Call<List<BudgetModel>> getAllBudgets();
 }

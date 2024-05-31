@@ -1,26 +1,43 @@
 package com.example.financialaidallocation.Classes;
 
 public class CommitteeMemberModel {
+    private int committeeId;
     private String name;
-    private String profileImagePath;
+    private String contactNo;
 
-    public CommitteeMemberModel(String name, String profileImagePath) {
-        this.name = name;
-        this.profileImagePath = profileImagePath;
+    public int getCommitteeId() {
+        return committeeId;
     }
+
+    public void setCommitteeId(int committeeId) {
+        this.committeeId = committeeId;
+    }
+
     public String getName() {
         return name;
-    }
-
-    public String getProfileImagePath() {
-        return profileImagePath;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setProfileImagePath(String profileImagePath) {
-        this.profileImagePath = profileImagePath;
+    public String getContactNo() {
+        return contactNo;
     }
+
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
+
+    private String profilePic;
+
+
 }

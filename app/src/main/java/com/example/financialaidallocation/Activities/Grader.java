@@ -39,8 +39,8 @@ public class Grader extends AppCompatActivity {
         recyclerView.addItemDecoration(new ItemDecoration(space));
 
         graderList = new ArrayList<>();
-        graderList.add(new GraderModel("John Doe", "ARID12345", null));
-        graderList.add(new GraderModel("Jane Smith", "ARID54321", null));
+        graderList.add(new GraderModel("Mudassar ullah", "2020-ARID-3564", null));
+        graderList.add(new GraderModel("Alishba Bibi", "2023-ARID-4564", null));
         // Add more items as needed
 
         graderAdapter = new GraderAdapter(this, graderList);

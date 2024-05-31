@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.financialaidallocation.Classes.LoginResponse;
+import com.example.financialaidallocation.Classes.SharedPrefManager;
 import com.example.financialaidallocation.R;
 
 import Api.ApiService;
@@ -24,8 +25,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    Button login;
 
+    Button login;
     UserService userService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText Password = findViewById(R.id.password_input);
                 String userName = usernameEditText.getText().toString().trim();
                 String password = Password.getText().toString().trim();
-
+                
                 userService=new UserService();
 
                 userService.login(userName, password, new Callback<LoginResponse>() {
@@ -55,16 +56,17 @@ public class MainActivity extends AppCompatActivity {
                         if(response.isSuccessful()){
 
                             Toast.makeText(MainActivity.this, "success", Toast.LENGTH_SHORT).show();
-
                             handleLoginSuccess(response.body());
 
                         }
+
                         else {
                             Toast.makeText(MainActivity.this, response.message(), Toast.LENGTH_SHORT).show();
 
                         }
 
                     }
+
 
                     @Override
                     public void onFailure(Call<LoginResponse> call, Throwable throwable) {
@@ -101,20 +103,27 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 4:
                 intent = new Intent(MainActivity.this, StudentDashboard.class);
+//                sharedPreferencesManager.getStudentUserObject(loginResponse);
                 // Pass the account name and ARID number to StudentActivity
-//                intent.putExtra("accountname",loginResponse.getUserName());
-//                intent.putExtra("aridNumber", loginResponse.getUserName());
+                intent.putExtra("accountname",loginResponse.getPassword());
+                intent.putExtra("aridNumber", loginResponse.getUserName());
+
                 break;
             default:
                 // Handle unknown role, maybe go to a default activity
                 Toast.makeText(this, "not found", Toast.LENGTH_SHORT).show();
                 break;
         }
+// Save user information to SharedPreferences
+
         intent.putExtra("userId", loginResponse.getId());
         intent.putExtra("userName", loginResponse.getUserName());
         intent.putExtra("password",loginResponse.getPassword());
         intent.putExtra("role",loginResponse.getRole());
-        intent.putExtra("profileId",loginResponse.getProfileid());
+        intent.putExtra("profileId",loginResponse.getProfileId());
+
+        // Save user information to SharedPreferences
+        SharedPrefManager.getInstance(MainActivity.this).saveUser(loginResponse);
         startActivity(intent);
     }
 }

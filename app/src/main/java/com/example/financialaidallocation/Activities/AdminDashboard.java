@@ -111,22 +111,22 @@ public class AdminDashboard extends AppCompatActivity {
                     // Handle the logout action
                     Intent intent = new Intent(AdminDashboard.this, MainActivity.class);
                     startActivity(intent);
-                    finish(); // Optional: close the current activity
+                    // Optional: close the current activity
                     return true;
                 } else if (itemId == R.id.anav_budget) {
                     Intent intent = new Intent(AdminDashboard.this, Budget.class);
                     startActivity(intent);
-                    finish(); // Optional: close the current activity
+                     // Optional: close the current activity
                     return true;
                 }else if (itemId == R.id.anav_student) {
                     Intent intent = new Intent(AdminDashboard.this, StudentRecord.class);
                     startActivity(intent);
-                    finish(); // Optional: close the current activity
+                     // Optional: close the current activity
                     return true;
                 }else if (itemId == R.id.anav_policies) {
                     Intent intent = new Intent(AdminDashboard.this, Policies.class);
                     startActivity(intent);
-                    finish(); // Optional: close the current activity
+                    // Optional: close the current activity
                     return true;
                 }
                 return false;

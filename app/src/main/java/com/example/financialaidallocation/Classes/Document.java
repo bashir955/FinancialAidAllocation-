@@ -1,4 +1,4 @@
-package com.example.financialaidallocation.Activities;
+package com.example.financialaidallocation.Classes;
 
 public class Document
 {

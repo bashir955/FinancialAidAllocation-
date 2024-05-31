@@ -3,27 +3,22 @@ package com.example.financialaidallocation.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.financialaidallocation.Classes.BudgetItemModel;
+import com.example.financialaidallocation.Classes.BudgetModel;
 import com.example.financialaidallocation.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.ViewHolder> implements Filterable {
+public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.ViewHolder> {
 
-    private List<BudgetItemModel> budgetItemList;
-    private List<BudgetItemModel> budgetItemListFull;
+    private List<BudgetModel> budgets;
 
-    public BudgetAdapter(List<BudgetItemModel> budgetItemList) {
-        this.budgetItemList = budgetItemList;
-        this.budgetItemListFull = new ArrayList<>(budgetItemList);
+    public BudgetAdapter(List<BudgetModel> budgets) {
+        this.budgets = budgets;
     }
 
     @NonNull
@@ -35,59 +30,24 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        BudgetItemModel budgetItem = budgetItemList.get(position);
-        holder.nameTextView.setText(budgetItem.getName());
-        holder.amountTextView.setText(budgetItem.getAmount());
+        BudgetModel budget = budgets.get(position);
+        holder.session.setText(budget.getBudget_session());
+        holder.amount.setText(String.valueOf(budget.getBudgetAmount()));
     }
 
     @Override
     public int getItemCount() {
-        return budgetItemList.size();
+        return budgets.size();
     }
 
-    @Override
-    public Filter getFilter() {
-        return budgetFilter;
-    }
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView session;
+        public TextView amount;
 
-    private Filter budgetFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<BudgetItemModel> filteredList = new ArrayList<>();
-
-            if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(budgetItemListFull);
-            } else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-
-                for (BudgetItemModel item : budgetItemListFull) {
-                    if (item.getName().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(item);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            budgetItemList.clear();
-            budgetItemList.addAll((List) results.values);
-            notifyDataSetChanged();
-        }
-    };
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView nameTextView;
-        public TextView amountTextView;
-
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.item_name);
-            amountTextView = itemView.findViewById(R.id.item_amount);
+            session = itemView.findViewById(R.id.Session);
+            amount = itemView.findViewById(R.id.b_amount);
         }
     }
 }

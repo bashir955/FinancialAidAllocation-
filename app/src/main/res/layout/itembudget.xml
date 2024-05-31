@@ -6,19 +6,28 @@
     android:background="@drawable/edittextbg"
     android:padding="16dp">
 
+
     <TextView
-        android:id="@+id/item_name"
+        android:id="@+id/Amount"
+        android:layout_width="4dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Amount :"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/b_amount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Item Name"
         android:textSize="16sp"
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/item_amount"
+        android:id="@+id/Session"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Item Amount"
+        android:text="Session"
         android:textSize="16sp"/>
 </LinearLayout>

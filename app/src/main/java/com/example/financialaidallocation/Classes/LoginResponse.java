@@ -1,13 +1,29 @@
 package com.example.financialaidallocation.Classes;
 
-import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 
-public class LoginResponse {
+public class LoginResponse implements Serializable {
     private int id;
     private String userName;
     private String password;
     private int role;
-    private int  profileid;
+    private int profileId;
+
+    public LoginResponse(int id, String userName, String password, int role, int profileId) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
+        this.profileId = profileId;
+    }
+
+    public int getProfileId() {
+        return profileId;
+    }
+
+    public void setProfileId(int profileId) {
+        this.profileId = profileId;
+    }
 
     public int getId() {
         return id;
@@ -41,11 +57,4 @@ public class LoginResponse {
         this.role = role;
     }
 
-    public int getProfileid() {
-        return profileid;
-    }
-
-    public void setProfileid(int profileid) {
-        this.profileid = profileid;
-    }
 }

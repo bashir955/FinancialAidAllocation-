@@ -9,25 +9,27 @@
 
     <TextView
         android:id="@+id/Amount"
-        android:layout_width="4dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="Amount :"
         android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/b_amount"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
         android:layout_weight="1"
         android:textSize="16sp"
-        android:textStyle="bold"/>
+       />
 
     <TextView
         android:id="@+id/Session"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
         android:text="Session"
+        android:textStyle="bold"
         android:textSize="16sp"/>
 </LinearLayout>

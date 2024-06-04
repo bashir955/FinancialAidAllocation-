@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:id="@+id/main"
 
-    android:padding="16dp"
+    android:padding="2dp"
     android:orientation="vertical">
 
     <!-- Header with Title and Add Button -->

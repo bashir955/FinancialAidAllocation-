@@ -129,6 +129,18 @@ public class AdminDashboard extends AppCompatActivity {
                     // Optional: close the current activity
                     return true;
                 }
+                else if (itemId == R.id.anav_committee_members) {
+                    Intent intent = new Intent(AdminDashboard.this, CommitteeMemberDashboard.class);
+                    startActivity(intent);
+                    // Optional: close the current activity
+                    return true;
+                }
+                else if (itemId == R.id.anav_faculty_members) {
+                    Intent intent = new Intent(AdminDashboard.this, FacultyMemberDashboard.class);
+                    startActivity(intent);
+                    // Optional: close the current activity
+                    return true;
+                }
                 return false;
             }
         });

@@ -91,11 +91,22 @@ public class StudentRecord extends AppCompatActivity {
             public void onResponse(Call<List<StudentModel>> call, Response<List<StudentModel>> response) {
                 if (response.isSuccessful()) {
                     List<StudentModel> students = response.body();
+                    if (students != null) {
+                        // Filter out null or invalid student records
+                        List<StudentModel> filteredStudents = new ArrayList<>();
+                        for (StudentModel student : students) {
+                            if (student != null && student.getName() != null && !student.getName().isEmpty() &&
+                                    student.getArid_no() != null && !student.getArid_no().isEmpty()) {
+                                filteredStudents.add(student);
+                            }
+                        }
                     adapter = new StudentRecordAdapter(students);
                     recyclerView.setAdapter(adapter);
-                } else {
-                    Toast.makeText(StudentRecord.this, "Failed to load students", Toast.LENGTH_SHORT).show();
-                }
+                } else  {
+                    Toast.makeText(StudentRecord.this, "No students available", Toast.LENGTH_SHORT).show();
+                }}else{
+                        Toast.makeText(StudentRecord.this, "Failed to load students", Toast.LENGTH_SHORT).show();
+                    }
             }
 
             @Override

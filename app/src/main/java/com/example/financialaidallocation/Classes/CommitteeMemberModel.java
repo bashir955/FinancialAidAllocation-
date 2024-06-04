@@ -4,6 +4,7 @@ public class CommitteeMemberModel {
     private int committeeId;
     private String name;
     private String contactNo;
+    private String profilePic;
 
     public int getCommitteeId() {
         return committeeId;
@@ -36,8 +37,4 @@ public class CommitteeMemberModel {
     public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
     }
-
-    private String profilePic;
-
-
 }

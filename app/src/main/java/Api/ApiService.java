@@ -1,4 +1,5 @@
 package Api;
+import com.example.financialaidallocation.Classes.ApplicationModel;
 import com.example.financialaidallocation.Classes.ApplicationStatusResponse;
 import com.example.financialaidallocation.Classes.ApplicationSuggestionModel;
 import com.example.financialaidallocation.Classes.BudgetModel;
@@ -6,6 +7,7 @@ import com.example.financialaidallocation.Classes.CommitteeMemberModel;
 import com.example.financialaidallocation.Classes.DefaultResponse;
 import com.example.financialaidallocation.Classes.LoginResponse;
 import com.example.financialaidallocation.Classes.MeritbaseStudentModel;
+import com.example.financialaidallocation.Classes.PolicyModel;
 import com.example.financialaidallocation.Classes.StudentModel;
 import com.example.financialaidallocation.Classes.StudentResponse;
 
@@ -102,4 +104,29 @@ public interface ApiService {
 
     @GET("Admin/getAllBudget")
     Call<List<BudgetModel>> getAllBudgets();
+
+    @POST("Admin/AddBudget")
+    Call<Integer> addBudget(@Query("amount") int amount);
+
+    @GET("Admin/getPolicies")
+    Call<List<PolicyModel>> getPolicies();
+
+    //Committee Member Screnn
+    @GET("Committee/GetApplication/{id}")
+    Call<List<ApplicationModel>> getApplications(@Path("id") int committeeId);
+
+    @GET("Committee/GetBalance")
+    Call<Double> getBalance();
+
+    @GET("Committee/CommitteeMembers/{id}")
+    Call<CommitteeMemberModel> getCommitteeMembers(@Path("id") int committeeId);
+
+    @POST("Committee/GiveSuggestion")
+    Call<Void> giveSuggestion(
+            @Query("committeeId") int committeeId,
+            @Query("status") String status,
+            @Query("applicationId") int applicationId,
+            @Query("comment") String comment
+    );
+
 }

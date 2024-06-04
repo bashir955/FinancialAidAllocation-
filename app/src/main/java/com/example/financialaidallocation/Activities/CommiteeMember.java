@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.financialaidallocation.Adapters.CommitteeMemberAdapter;
+import com.example.financialaidallocation.Adapters.aCommitteeMemberAdapter;
 import com.example.financialaidallocation.Classes.CommitteeMemberModel;
 import com.example.financialaidallocation.R;
 
@@ -27,7 +27,7 @@ import retrofit2.Response;
 public class CommiteeMember extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private CommitteeMemberAdapter adapter;
+    private aCommitteeMemberAdapter adapter;
   private UserService userService;
 
     private EditText searchEditText;
@@ -80,7 +80,7 @@ public class CommiteeMember extends AppCompatActivity {
             public void onResponse(Call<List<CommitteeMemberModel>> call, Response<List<CommitteeMemberModel>> response) {
                 if (response.isSuccessful()) {
                     List<CommitteeMemberModel> members = response.body();
-                    adapter = new CommitteeMemberAdapter(members);
+                    adapter = new aCommitteeMemberAdapter(members);
                     recyclerView.setAdapter(adapter);
                 } else {
                     Toast.makeText(CommiteeMember.this, "Failed to load committee members", Toast.LENGTH_SHORT).show();

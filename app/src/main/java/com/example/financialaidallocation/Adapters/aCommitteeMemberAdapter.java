@@ -15,12 +15,12 @@ import com.example.financialaidallocation.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommitteeMemberAdapter extends RecyclerView.Adapter<CommitteeMemberAdapter.ViewHolder> {
+public class aCommitteeMemberAdapter extends RecyclerView.Adapter<aCommitteeMemberAdapter.ViewHolder> {
 
     private List<CommitteeMemberModel> committeeMembers;
     private List<CommitteeMemberModel> filteredCommitteeMembers;
 
-    public CommitteeMemberAdapter(List<CommitteeMemberModel> committeeMembers) {
+    public aCommitteeMemberAdapter(List<CommitteeMemberModel> committeeMembers) {
 //        this.context = context;
         this.committeeMembers = committeeMembers;
         this.filteredCommitteeMembers = new ArrayList<>(committeeMembers);

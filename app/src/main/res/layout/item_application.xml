@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/edittextbg"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:padding="6dp">
+
+    <ImageView
+        android:id="@+id/document_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@string/document_image_desc"
+        android:src="@drawable/document" />
+
+
+
+    <TextView
+        android:id="@+id/Naame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="Name"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/Aridno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:text="ARID No."
+        android:textSize="14sp" />
+</LinearLayout>

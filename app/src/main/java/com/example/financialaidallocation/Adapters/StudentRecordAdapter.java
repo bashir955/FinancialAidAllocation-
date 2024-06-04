@@ -36,9 +36,10 @@ public class StudentRecordAdapter extends RecyclerView.Adapter<StudentRecordAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         StudentModel student = filteredStudents.get(position);
+        if (student != null && student.getName() != null && student.getArid_no() != null){
         holder.name.setText(student.getName());
         holder.arid_no.setText(student.getArid_no());
-    }
+    }}
 
     @Override
     public int getItemCount() {

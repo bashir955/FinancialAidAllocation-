@@ -1,15 +1,23 @@
 package com.example.financialaidallocation.Activities;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -18,172 +26,199 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.financialaidallocation.Adapters.ApplicationAdapter;
+import com.example.financialaidallocation.Classes.ApplicationModel;
 import com.example.financialaidallocation.Classes.Document;
 import com.example.financialaidallocation.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import Api.ApiService;
+import Api.RetrofitClient;
+import Api.UserService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class CommitteeMemberDashboard extends AppCompatActivity {
-    DrawerLayout drawerLayout;
-    ImageButton btndrawerToogle;
-    NavigationView navigationView;
-    private RecyclerView recyclerView;
-  //  private DocumentAdapter documentAdapter;
-    private List<Document> documentList;
-    private EditText searchEditText;
-    private ImageView searchIcon;
+        DrawerLayout drawerLayout;
+        ImageButton btndrawerToogle;
+        NavigationView navigationView;
+        private RecyclerView recyclerView;
+        private ApplicationAdapter adapter;
+        private List<ApplicationModel> applicationList = new ArrayList<>();
+        private EditText searchEditText;
+        private ImageView searchIcon;
+        private UserService userService;
+        private Button balanceButton;
+    private TextView remainingApplicationsTextView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_committee_member_dashboard);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            EdgeToEdge.enable(this);
+            setContentView(R.layout.activity_committee_member_dashboard);
+            // Reference the TextView for remaining applications
+            remainingApplicationsTextView = findViewById(R.id.RemainingApplication);
 
-        drawerLayout = findViewById(R.id.drawerlayout);
+            balanceButton = findViewById(R.id.nav_balance);
+            userService = new UserService();
 
-        navigationView = findViewById(R.id.navigationView);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem Item) {
-                int itemId = Item.getItemId();
-                if (itemId == R.id.nav_logout) {
-                    // Handle the logout action
-                    Intent intent = new Intent(CommitteeMemberDashboard.this, MainActivity.class);
-                    startActivity(intent);
-                     // Optional: close the current activity
-                    return true;
+            drawerLayout = findViewById(R.id.drawerlayout);
+
+            navigationView = findViewById(R.id.navigationView);
+            navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem Item) {
+                    int itemId = Item.getItemId();
+                    if (itemId == R.id.nav_logout) {
+                        // Handle the logout action
+                        Intent intent = new Intent(CommitteeMemberDashboard.this, MainActivity.class);
+                        startActivity(intent);
+                        // Optional: close the current activity
+                        return true;
+                    } else if (itemId == R.id.SwitchtoFaculty) {
+                        // Handle the switch to faculty action
+                        Intent intent = new Intent(CommitteeMemberDashboard.this, FacultyMemberDashboard.class);
+                        startActivity(intent);
+                        // Optional: close the current activity
+                        return true;
+                    }else if (itemId == R.id.nav_balance) {
+                        // Handle the balance check action
+                        showBalanceDialog();
+                        return true;
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
-        btndrawerToogle = findViewById(R.id.buttondrawerToogle);
+            });
 
-        btndrawerToogle.setOnClickListener(new View.OnClickListener() {
+            btndrawerToogle = findViewById(R.id.buttondrawerToogle);
+
+            btndrawerToogle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    drawerLayout.open();
+                }
+            });
+
+
+            // Initialize RecyclerView
+            recyclerView = findViewById(R.id.recycler_view);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+            // Add margin between items
+            int space = getResources().getDimensionPixelSize(R.dimen.recycler_item_margin);
+            recyclerView.addItemDecoration(new ItemDecoration(space));
+            adapter = new ApplicationAdapter(applicationList,remainingApplicationsTextView);
+            recyclerView.setAdapter(adapter);
+
+            // Call the API with a sample ID, for example 1
+            new GetApplicationTask().execute(1);
+            searchEditText = findViewById(R.id.search_edittext);
+
+            ViewCompat.setOnApplyWindowInsetsListener(
+                    findViewById(R.id.drawerlayout), (v, insets) -> {
+                        Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                        v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                        return insets;
+                    });
+        }
+
+
+        private void showBalanceDialog() {
+            userService.getBalance(new Callback<Double>() {
+                @Override
+                public void onResponse(Call<Double> call, Response<Double> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        // Inflate the dialog layout
+                        LayoutInflater inflater = LayoutInflater.from(CommitteeMemberDashboard.this);
+                        View dialogView = inflater.inflate(R.layout.dialog_balance, null);
+
+                        // Create the dialog
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(CommitteeMemberDashboard.this);
+                        dialogBuilder.setView(dialogView);
+
+                        // Set the balance value
+                        TextView balanceTextView = dialogView.findViewById(R.id.balance_text_view);
+                        balanceTextView.setText(String.valueOf(response.body()));
+
+                        // Set up the close button
+                        Button closeButton = dialogView.findViewById(R.id.close_button);
+
+                        // Create the dialog before setting the click listener
+                        AlertDialog dialog = dialogBuilder.create();
+
+                        closeButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                        // Show the dialog
+                        dialog.show();
+
+                    } else {
+                        Toast.makeText(CommitteeMemberDashboard.this, "Failed to get balance", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Double> call, Throwable t) {
+                    Log.e("MainActivity", "Error fetching balance", t);
+                    Toast.makeText(CommitteeMemberDashboard.this, "Error fetching balance", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        private class GetApplicationTask extends AsyncTask<Integer, Void, String> {
+
             @Override
-            public void onClick(View view) {
-                drawerLayout.open();
+            protected String doInBackground(Integer... params) {
+                int id = params[0];
+                ApiService apiService = RetrofitClient.getinstance().create(ApiService.class);
+
+                try {
+                    Call<List<ApplicationModel>> call = apiService.getApplications(id);
+                    Response<List<ApplicationModel>> response = call.execute();
+                    if (response.isSuccessful()) {
+                        List<ApplicationModel> applications = response.body();
+                        Gson gson = new Gson();
+                        return gson.toJson(applications);
+                    } else {
+                        return null;
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return null;
+                }
             }
-        });
 
-        // Initialize RecyclerView
-        recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            @Override
+            protected void onPostExecute(String result) {
+                if (result != null) {
+                    try {
+                        Gson gson = new Gson();
+                        Type listType = new TypeToken<List<ApplicationModel>>() {}.getType();
+                        List<ApplicationModel> applications = gson.fromJson(result, listType);
 
-        // Add margin between items
-        int space = getResources().getDimensionPixelSize(R.dimen.recycler_item_margin);
-        recyclerView.addItemDecoration(new ItemDecoration(space));
+                        applicationList.clear();
+                        applicationList.addAll(applications);
+                        adapter.notifyDataSetChanged();
 
-        documentList = new ArrayList<>();
-        documentList.add(new Document(R.drawable.document, "Muhammad Ali", "2019-ARID-12345"));
-        documentList.add(new Document(R.drawable.document, "M Amir Shehzad", "2018-ARID-67890"));
-        documentList.add(new Document(R.drawable.document, "Muhammad Bashir","2020-Arid-3699"));
-        documentList.add(new Document(R.drawable.document, "Arsalan Raja","2023-Arid-4322"));
-        documentList.add(new Document(R.drawable.document, "Maria Bukhari","2021-Arid-2319"));
-        documentList.add(new Document(R.drawable.document, "Umair Malik","2020-Arid-2516"));
-
-
-      //  documentAdapter = new DocumentAdapter(this, documentList);
-       // recyclerView.setAdapter(documentAdapter);
-
-        // Sample data for demonstration
-//        documentList = getSampleDocuments();
-        // Create and set adapter
-//        adapter = new DocumentAdapter(documentList);
-//        recyclerView.setAdapter(adapter);
-//        documentList = new ArrayList<>();
-//        documentList.add(new Document(R.drawable.biitlogo, "Document 1", "ARID 12345"));
-//        documentList.add(new Document(R.drawable.biitlogo, "Document 2", "ARID 67890"));
-//        // Add more documents as needed
-//        documentAdapter = new DocumentAdapter(this, documentList);
-//        recyclerView.setAdapter(DocumentAdapter);
-        // Initialize SearchEditText
-        searchEditText = findViewById(R.id.search_edittext);
-//        searchEditText.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                // Do nothing
-//            }
-
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                adapter.getFilter().filter(s.toString());
-//            }
-
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                // Do nothing
-//            }
-//        });
-
-        // Initialize SearchIcon
-//        searchIcon = findViewById(R.id.search_icon);
-//        searchIcon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String query = searchEditText.getText().toString().trim();
-//                adapter.getFilter().filter(query);
-//            }
-//        });
-
-        // Initialize DegreeSpinner
-//        Spinner degreeSpinner = findViewById(R.id.DegreeSpinner);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//                R.array.degree_array, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        degreeSpinner.setAdapter(adapter);
-
-//        degreeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String selectedDegree = parent.getItemAtPosition(position).toString();
-//                filterByDegree(selectedDegree);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                // Do nothing
-//            }
-//        });
-        ViewCompat.setOnApplyWindowInsetsListener(
-
-                findViewById(R.id.drawerlayout), (v, insets) ->
-                {
-                    Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                    v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                    return insets;
-                });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(CommitteeMemberDashboard.this, "Error parsing data", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(CommitteeMemberDashboard.this, "Error retrieving data", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
     }
-
-//    private void filterByDegree(String degreeType) {
-//        List<Document> filteredDocuments = new ArrayList<>();
-//        for (Document document : documentList) {
-//            if (document.getDegreeType().equalsIgnoreCase(degreeType)) {
-//                filteredDocuments.add(document);
-//            }
-//        }
-//        adapter.updateList(filteredDocuments);
-//    }
-
-    // Method to generate sample documents
-//    private List<Document> getSampleDocuments() {
-//        List<Document> documents = new ArrayList<>();
-//        // Add your documents here or fetch from a data source
-//        // For example:
-//        documents.add(new Document("Muhammad Bashir", "2020-Arid-3699","Msc"));
-//        documents.add(new Document("Muhammad Ali", "2021-Arid-3534","Bsc"));
-//        documents.add(new Document("M Amir Shehzad", "2022-Arid-2983","Msc"));
-////        documents.add(new Document("Arsalan Raja", "2023-Arid-4322","Bsc"));
-////        documents.add(new Document("Maria Bukhari", "2019-Arid-4656","Msc"));
-////        documents.add(new Document("Umair Malik", "2020-Arid-2516","Bsc"));
-////
-////        documents.add(new Document("Ali Rehman", "2020-Arid-3699","Msc"));
-////        documents.add(new Document("Kashif Rizvi", "2021-Arid-3534","Msc"));
-////        documents.add(new Document("Shehzad Khan", "2022-Arid-2983","Bsc"));
-////        documents.add(new Document("Bilal Khan", "2023-Arid-4322","Msc"));
-////        documents.add(new Document("Nadir Ali", "2019-Arid-4656","Msc"));
-////        documents.add(new Document("Nimra Baloch", "2020-Arid-2516","Bsc"));
-//        return documents;
-//    }
-}

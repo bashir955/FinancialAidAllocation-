@@ -1,9 +1,9 @@
 package com.example.financialaidallocation.Adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,56 +15,54 @@ import com.example.financialaidallocation.R;
 import java.util.List;
 
 public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyViewHolder> {
+    private List<PolicyModel> policies;
 
-    private List<PolicyModel> policyList;
-    private OnEditClickListener onEditClickListener;
-
-    public interface OnEditClickListener {
-        void onEditClick(int position);
-    }
-
-    public PolicyAdapter(List<PolicyModel> policyList, OnEditClickListener onEditClickListener) {
-        this.policyList = policyList;
-        this.onEditClickListener = onEditClickListener;
+    public PolicyAdapter(List<PolicyModel> policies) {
+        this.policies = policies;
     }
 
     @NonNull
     @Override
     public PolicyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_policy, parent, false);
-        return new PolicyViewHolder(view, onEditClickListener);
+        return new PolicyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PolicyViewHolder holder, int position) {
-        PolicyModel policy = policyList.get(position);
-        holder.policyType.setText(policy.getPolicyType());
-        holder.requiredCgpa.setText(policy.getRequiredCgpa());
-        holder.cgpaDescription.setText(policy.getCgpaDescription());
+        PolicyModel policy = policies.get(position);
+
+        // Logging to check if data is being set
+        Log.d("PolicyAdapter", "Binding data at position: " + position + " with data: " + policy.toString());
+
+        if (policy != null) {
+            holder.policyType.setText(policy.getPolicyfor());
+            holder.session.setText(policy.getSession());
+            holder.description.setText(policy.getDescription());
+            holder.policy.setText(policy.getPolicy1());
+            holder.requiredCgpa.setText(String.valueOf(policy.getVal1()));
+            holder.strength.setText(String.valueOf(policy.getStrength()));
+        } else {
+            Log.e("PolicyAdapter", "Policy data is null at position: " + position);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return policyList.size();
+        return policies != null ? policies.size() : 0;
     }
 
     public static class PolicyViewHolder extends RecyclerView.ViewHolder {
-        TextView policyType, requiredCgpa, cgpaDescription;
-        ImageView editIcon;
+        TextView policyType, session, description, policy, requiredCgpa, strength;
 
-        public PolicyViewHolder(@NonNull View itemView, OnEditClickListener onEditClickListener) {
+        public PolicyViewHolder(@NonNull View itemView) {
             super(itemView);
             policyType = itemView.findViewById(R.id.policy_type);
+            session = itemView.findViewById(R.id.session);
+            description = itemView.findViewById(R.id.Description);
+            policy = itemView.findViewById(R.id.policy);
             requiredCgpa = itemView.findViewById(R.id.required_cgpa);
-            cgpaDescription = itemView.findViewById(R.id.cgpa_description);
-            editIcon = itemView.findViewById(R.id.edit_icon);
-
-            editIcon.setOnClickListener(v -> {
-                if (onEditClickListener != null) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        onEditClickListener.onEditClick(position);
-                    }
-                }
-            });
-        }}}
+            strength = itemView.findViewById(R.id.str);
+        }
+    }
+}

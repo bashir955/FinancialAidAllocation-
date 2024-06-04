@@ -1,10 +1,14 @@
 package Api;
+
+import com.example.financialaidallocation.Classes.ApplicationModel;
 import com.example.financialaidallocation.Classes.ApplicationStatusResponse;
 import com.example.financialaidallocation.Classes.ApplicationSuggestionModel;
+import com.example.financialaidallocation.Classes.BalanceModel;
 import com.example.financialaidallocation.Classes.BudgetModel;
 import com.example.financialaidallocation.Classes.CommitteeMemberModel;
 import com.example.financialaidallocation.Classes.LoginResponse;
 import com.example.financialaidallocation.Classes.MeritbaseStudentModel;
+import com.example.financialaidallocation.Classes.PolicyModel;
 import com.example.financialaidallocation.Classes.StudentModel;
 import com.example.financialaidallocation.Classes.StudentResponse;
 
@@ -51,5 +55,22 @@ public class UserService {
         Call<List<BudgetModel>> call = apiService.getAllBudgets();
         call.enqueue(callback);
 }
+    public void getPolicies(Callback<List<PolicyModel>> callback) {
+        Call<List<PolicyModel>> call = apiService.getPolicies();
+        call.enqueue(callback);
+
+}
+
+//Commitee Members
+
+    public void getApplications(int committeeId, Callback<List<ApplicationModel>> callback) {
+        Call<List<ApplicationModel>> call = apiService.getApplications(committeeId);
+        call.enqueue(callback);
+    }
+    public void getBalance(Callback<Double> callback) {
+        Call<Double> call = apiService.getBalance();
+        call.enqueue(callback);
+    }
+
 
 }

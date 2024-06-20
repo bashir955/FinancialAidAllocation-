@@ -13,7 +13,7 @@ public class RetrofitClient {
         if(retrofit == null)
         {
             retrofit =  new Retrofit.Builder()
-                    .baseUrl("http://192.168.1.4/FInancialAid/api/")
+                    .baseUrl("http://192.168.1.30/FInancialAid/api/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

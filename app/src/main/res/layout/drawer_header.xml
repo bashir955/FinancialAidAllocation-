@@ -17,12 +17,16 @@
         
         <ImageView
             android:layout_width="match_parent"
+            android:id="@+id/headerimg"
             android:layout_height="match_parent"
-            android:src="@drawable/usman"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/person"
+        android:adjustViewBounds="true" />
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:layout_width="match_parent"
+        android:id="@+id/headerN"
         android:layout_height="wrap_content"
         android:text="Usman Akbar"
         android:layout_marginTop="5dp"

@@ -2,6 +2,8 @@ package com.example.financialaidallocation.Classes;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class ApplicationModel {
 
     @SerializedName("arid_no")
@@ -30,8 +32,17 @@ public class ApplicationModel {
     private String reason;
     @SerializedName("requiredAmount")
     private double requiredAmount;
-//    @SerializedName("EvidenceDocuments")
-//    private String evidenceDocuments;
+    @SerializedName("EvidenceDocuments")
+    private List<EvidenceDocumentModel> evidenceDocuments;
+
+    public List<EvidenceDocumentModel> getEvidenceDocuments() {
+        return evidenceDocuments;
+    }
+
+    public void setEvidenceDocuments(List<EvidenceDocumentModel> evidenceDocuments) {
+        this.evidenceDocuments = evidenceDocuments;
+    }
+
     @SerializedName("applicationID")
     private int applicationId;
     @SerializedName("session")
@@ -123,8 +134,11 @@ public class ApplicationModel {
         this.section = section;
     }
 
-    public String getProfileImage() {
-        return profileImage;
+//    public String getProfileImage() {
+//        return profileImage;
+//    }
+    public String getProfileImageUrl() {
+        return Config.IMAGE_BASE_URL + profileImage;
     }
 
     public void setProfileImage(String profileImage) {
@@ -155,13 +169,7 @@ public class ApplicationModel {
         this.requiredAmount = requiredAmount;
     }
 
-//    public String getEvidenceDocuments() {
-//        return evidenceDocuments;
-//    }
-//
-//    public void setEvidenceDocuments(String evidenceDocuments) {
-//        this.evidenceDocuments = evidenceDocuments;
-//    }
+
 
     public int getApplicationId() {
         return applicationId;

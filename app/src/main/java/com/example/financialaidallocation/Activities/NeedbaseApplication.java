@@ -2,6 +2,7 @@
 
 package com.example.financialaidallocation.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -36,7 +37,7 @@ public class NeedbaseApplication extends AppCompatActivity {
 
 
     private RecyclerView recyclerView;
-    private List<ApplicationSuggestionModel> applicationList;
+    private List<ApplicationSuggestionModel> list;
     private ApplicationSuggestionAdapter adapter;
     private EditText searchEditText;
     private ImageView searchIcon;
@@ -59,11 +60,7 @@ public class NeedbaseApplication extends AppCompatActivity {
         int space = getResources().getDimensionPixelSize(R.dimen.recycler_item_margin);
         recyclerView.addItemDecoration(new ItemDecoration(space));
 
-        // Initialize applicationList and adapter
-//        applicationList = new ArrayList<>();
-//        adapter = new ApplicationSuggestionAdapter(this, applicationList);
-//        recyclerView.setAdapter(adapter);
-        applicationList = new ArrayList<>();
+        list = new ArrayList<>();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -73,7 +70,6 @@ public class NeedbaseApplication extends AppCompatActivity {
         fetchApplications();
         setupSearch();
     }
-
     private void fetchApplications() {
         ApiService apiService = RetrofitClient.getinstance().create(ApiService.class);
         Call<List<ApplicationSuggestionModel>> call = apiService.getApplicationSuggestions();
@@ -82,19 +78,24 @@ public class NeedbaseApplication extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<ApplicationSuggestionModel>> call, Response<List<ApplicationSuggestionModel>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    applicationList = response.body();
-                    adapter = new ApplicationSuggestionAdapter(applicationList);
+                    list = response.body();
+                    adapter = new ApplicationSuggestionAdapter(list, application -> {
+                        Intent intent = new Intent(NeedbaseApplication.this, NeedBaseApplicationDetailsActivity.class);
+                        intent.putExtra("application", application);
+                        startActivity(intent);
+                    });
                     recyclerView.setAdapter(adapter);
                     Log.d("API_SUCCESS", "Application data fetched successfully");
                 } else {
-                    Log.e("API_ERROR", "Failed to fetch data");
+                    Log.e("API_ERROR", "Failed to fetch data: " + response.message());
+                    Toast.makeText(NeedbaseApplication.this, "Failed to fetch data: " + response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<ApplicationSuggestionModel>> call, Throwable t) {
-                Toast.makeText(NeedbaseApplication.this, "An error occurred", Toast.LENGTH_SHORT).show();
-
+                Log.e("API_ERROR", "Error fetching data", t);
+                Toast.makeText(NeedbaseApplication.this, "An error occurred: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -113,11 +114,8 @@ public class NeedbaseApplication extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
-        searchIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // No filter logic here
-            }
+        searchIcon.setOnClickListener(v -> {
+            // No filter logic here
         });
     }
 }

@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +38,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class applyforschloarship extends AppCompatActivity {
+
+    EditText nameInput, aridInput, semesterInput, cgpaInput, gnameInput, gcontactInput, grelationInput,
+            fathernameInput, jobInput, contactnoInput, salaryInput, studentidInput;
+    RadioButton aliveRadio, deceasedRadio;
+    Button uploadButton, nextButton, cancelButton;
+
     private RadioGroup rgParentsDetail;
     private TextView stdNameTextView;
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -51,6 +59,31 @@ public class applyforschloarship extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_applyforschloarship);
+//        nameInput = findViewById(R.id.std_name);
+//        aridInput = findViewById(R.id.aridInput);
+//        semesterInput = findViewById(R.id.semesterInput);
+//        cgpaInput = findViewById(R.id.cgpaInput);
+//        gnameInput = findViewById(R.id.gnameInput);
+//        gcontactInput = findViewById(R.id.gcontactInput);
+//        grelationInput = findViewById(R.id.grelationInput);
+//        fathernameInput = findViewById(R.id.fathernameInput);
+//        jobInput = findViewById(R.id.jobInput);
+//        contactnoInput = findViewById(R.id.contactnoInput);
+//        salaryInput = findViewById(R.id.salaryInput);
+//        studentidInput = findViewById(R.id.studentidInput);
+//
+//        aliveRadio = findViewById(R.id.aliveRadio);
+//        deceasedRadio = findViewById(R.id.deceasedRadio);
+//
+//        uploadButton = findViewById(R.id.uploadButton);
+//        nextButton = findViewById(R.id.nextButton);
+//        cancelButton = findViewById(R.id.cancelButton);
+//
+//        nextButton.setOnClickListener(v -> handleNext());
+//        cancelButton.setOnClickListener(v -> clearForm());
+//
+//        uploadButton.setOnClickListener(v -> handleUploadDocument());
+
 
         stdNameTextView=findViewById(R.id.std_name);
         stdAridNoTextView=findViewById(R.id.std_aridno);
@@ -109,7 +142,7 @@ public class applyforschloarship extends AppCompatActivity {
 
 
 
-        TextView tvUpload = findViewById(R.id.tvUpload);
+        TextView tvUpload = findViewById(R.id.tvDeathCertificates);
         tvUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,19 +191,21 @@ public class applyforschloarship extends AppCompatActivity {
     }
 
     private void openGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, 1234);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*"); // Set the MIME type of files you want to allow
+        startActivityForResult(intent, 1234); // Use a unique request code
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1234 && resultCode == RESULT_OK && data != null) {
+        if (requestCode == 123 && resultCode == RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
             // Handle the selected image (e.g., display it in an ImageView or upload it to a server)
-            TextView tvUpload = findViewById(R.id.tvUpload);
+            TextView tvUpload = findViewById(R.id.tvDeathCertificates);
             tvUpload.setText("Selected image: " + selectedImage.getLastPathSegment());
-        } else if (requestCode == 123 && resultCode == RESULT_OK) {
+        } else if (requestCode == 1234 && resultCode == RESULT_OK) {
             {
                 Uri selectedFileUri = data.getData();
                 // Handle the selected file URI (e.g., display the file name)

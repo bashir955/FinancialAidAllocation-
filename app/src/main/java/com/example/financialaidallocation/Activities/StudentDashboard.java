@@ -177,13 +177,13 @@ public class StudentDashboard extends AppCompatActivity implements View.OnClickL
             i  = new Intent(this, applyforschloarship.class);
             startActivity(i);
         } else if (id == R.id.needbase_criteria) {
-            i = new Intent(this, applyforschloarship.class);
+            i = new Intent(this, NeedBaseCriteria.class);
             startActivity(i);
         } else if (id == R.id.meritbase_criteria) {
-            i = new Intent(this, applyforschloarship.class);
+            i = new Intent(this, MeritbaseCriteria.class);
             startActivity(i);
         } else if (id == R.id.need_help) {
-            i = new Intent(this, applyforschloarship.class);
+            i = new Intent(this, NeedHelp.class);
 
             startActivity(i);
         }

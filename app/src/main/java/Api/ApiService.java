@@ -8,6 +8,7 @@ import com.example.financialaidallocation.Classes.DefaultResponse;
 import com.example.financialaidallocation.Classes.LoginResponse;
 import com.example.financialaidallocation.Classes.MeritbaseStudentModel;
 import com.example.financialaidallocation.Classes.PolicyModel;
+import com.example.financialaidallocation.Classes.ScholorShipPolicy;
 import com.example.financialaidallocation.Classes.StudentModel;
 import com.example.financialaidallocation.Classes.StudentResponse;
 
@@ -106,10 +107,10 @@ public interface ApiService {
     Call<List<BudgetModel>> getAllBudgets();
 
     @POST("Admin/AddBudget")
-    Call<Integer> addBudget(@Query("amount") int amount);
+    Call<Integer> addBudget(@Body int amount);
 
     @GET("Admin/getPolicies")
-    Call<List<PolicyModel>> getPolicies();
+    Call<List<ScholorShipPolicy>> getPolicies();
 
     //Committee Member Screnn
     @GET("Committee/GetApplication/{id}")

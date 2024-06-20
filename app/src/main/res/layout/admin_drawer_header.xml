@@ -18,13 +18,13 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/hamid"/>
+            android:src="@drawable/person"/>
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hamid "
+        android:text="Abdul Islam "
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:textSize="15sp"

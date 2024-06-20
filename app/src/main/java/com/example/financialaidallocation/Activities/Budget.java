@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.SearchView;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,6 @@ public class Budget extends AppCompatActivity {
     private RecyclerView recyclerView;
     private BudgetAdapter adapter;
     private UserService userService;
-
     private ImageView addIcon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class Budget extends AppCompatActivity {
         recyclerView.addItemDecoration(new ItemDecoration(spacingInPixels));
         userService = new UserService();
 //        // Handle add icon click
-//        addIcon.setOnClickListener(v -> showAddAmountDialog());
+        addIcon.setOnClickListener(v -> showAddBudgetDialog());
         fetchBudgetData();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -58,6 +59,58 @@ public class Budget extends AppCompatActivity {
             return insets;
         });
     }
+
+    private void showAddBudgetDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_add_budget, null);
+        dialogBuilder.setView(dialogView);
+
+        EditText editTextAmount = dialogView.findViewById(R.id.edit_text_amount);
+        Button buttonAdd = dialogView.findViewById(R.id.button_add);
+
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+
+        buttonAdd.setOnClickListener(v ->  {
+
+                String amountStr = editTextAmount.getText().toString();
+                if (!amountStr.isEmpty()) {
+                    int amount = Integer.parseInt(amountStr);
+                    addBudget(amount);
+                    alertDialog.dismiss();
+                } else {
+                    Toast.makeText(Budget.this, "Please enter an amount", Toast.LENGTH_SHORT).show();
+                }
+
+        });
+    }
+    private void addBudget(int amount) {
+        userService.addBudget(amount, new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Integer budgetId = response.body();
+                    BudgetModel newBudget = new BudgetModel();
+                    newBudget.setBudgetId(budgetId);
+                    newBudget.setBudgetAmount(amount);
+                    newBudget.setBudget_session("Fall-2024");
+                    // Add the new budget to the adapter and update the RecyclerView
+                    adapter.addBudget(newBudget);
+                    // Handle success, maybe update UI or show a success message
+                    fetchBudgetData(); // Refresh data after adding a new budget
+                } else {
+                    Log.e("API_ERROR", "Response was not successful"+response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                Log.e("API_ERROR", "Failed to add budget: " + t.getMessage());
+            }
+        });
+    }
+
 
     private void fetchBudgetData() {
         userService.getAllBudgets(new Callback<List<BudgetModel>>() {
@@ -81,28 +134,3 @@ public class Budget extends AppCompatActivity {
     }
 
 }
-
-//    private void showAddAmountDialog() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        LayoutInflater inflater = getLayoutInflater();
-//        View dialogView = inflater.inflate(R.layout.dialogaddamount, null);
-//        builder.setView(dialogView);
-//
-//        EditText editTextAmount = dialogView.findViewById(R.id.edit_text_amount);
-//        Button buttonAddAmount = dialogView.findViewById(R.id.button_add_amount);
-//
-//        AlertDialog dialog = builder.create();
-//
-//        buttonAddAmount.setOnClickListener(v -> {
-//            String amount = editTextAmount.getText().toString();
-//            if (!amount.isEmpty()) {
-//                budgetItemList.add(new BudgetItemModel("Amount:", amount));
-//                budgetAdapter.notifyItemInserted(budgetItemList.size() - 1);
-//                dialog.dismiss();
-//            } else {
-//                editTextAmount.setError("Please enter an amount");
-//            }
-//        });
-//
-//        dialog.show();
-//    }}

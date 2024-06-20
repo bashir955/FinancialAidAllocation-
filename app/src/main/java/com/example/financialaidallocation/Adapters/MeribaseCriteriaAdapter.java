@@ -15,10 +15,10 @@ import com.example.financialaidallocation.R;
 
 import java.util.List;
 
-public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyViewHolder> {
+public class MeribaseCriteriaAdapter extends RecyclerView.Adapter<MeribaseCriteriaAdapter.PolicyViewHolder> {
     private List<ScholorShipPolicy> policies;
 
-    public PolicyAdapter(List<ScholorShipPolicy> policies) {
+    public MeribaseCriteriaAdapter(List<ScholorShipPolicy> policies) {
         this.policies = policies;
     }
 
@@ -33,16 +33,17 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyView
     public void onBindViewHolder(@NonNull PolicyViewHolder holder, int position) {
         ScholorShipPolicy policy = policies.get(position);
 
+
         // Logging to check if data is being set
         Log.d("PolicyAdapter", "Binding data at position: " + position + " with data: " + policy.toString());
 
         if (policy != null) {
             holder.policyType.setText(policy.getP().getPolicyfor());
-            holder.session.setText(policy.getP().getSession()+"");
+            holder.session.setText(policy.getP().getSession());
             holder.description.setText(policy.getC().getDescription());
             holder.policy.setText(policy.getP().getPolicy1());
             holder.requiredCgpa.setText(String.valueOf(policy.getC().getVal1()));
-            holder.strength.setText(String.valueOf(policy.getC().getStrength()+""));
+            holder.strength.setText(String.valueOf(policy.getC().getStrength()));
         } else {
             Log.e("PolicyAdapter", "Policy data is null at position: " + position);
         }

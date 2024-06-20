@@ -35,4 +35,5 @@
         android:paddingTop="4dp"
         android:text="ARID No."
         android:textSize="14sp" />
+
 </LinearLayout>

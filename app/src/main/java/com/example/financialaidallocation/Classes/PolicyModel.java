@@ -1,27 +1,27 @@
 package com.example.financialaidallocation.Classes;
 
-public class PolicyModel {
+import java.io.Serializable;
 
+public class PolicyModel implements Serializable {
+    int id;
+    String policy1;
+    String session;
+    String policyfor;
 
-    private String description;
-    private int strength;
-    private String session;
-
-
-    public String getDescription() {
-        return description;
+    public int getId() {
+        return id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getStrength() {
-        return strength;
+    public String getPolicy1() {
+        return policy1;
     }
 
-    public void setStrength(int strength) {
-        this.strength = strength;
+    public void setPolicy1(String policy1) {
+        this.policy1 = policy1;
     }
 
     public String getSession() {
@@ -39,24 +39,4 @@ public class PolicyModel {
     public void setPolicyfor(String policyfor) {
         this.policyfor = policyfor;
     }
-
-    public String getPolicy1() {
-        return policy1;
-    }
-
-    public void setPolicy1(String policy1) {
-        this.policy1 = policy1;
-    }
-
-    public double getVal1() {
-        return val1;
-    }
-
-    public void setVal1(double val1) {
-        this.val1 = val1;
-    }
-
-    private String policyfor;
-    private String policy1;
-    private double val1;
 }

@@ -1,0 +1,164 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:padding="16dp">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/title_informations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INFORMATIONS"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <!-- Address Icon -->
+    <ImageView
+        android:id="@+id/icon_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/address"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Address Text -->
+    <TextView
+        android:id="@+id/text_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="BIIT-106-A/1 Murree Rd, Block A Satellite Town Rawalpindi, Pakistan"
+        android:layout_marginTop="4dp"/>
+
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Address Icon -->
+        <ImageView
+            android:id="@+id/mobilenbr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/contact"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Address Text -->
+        <TextView
+            android:id="@+id/Contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Mobile Number: (+92) 336-0572652"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Address Icon -->
+        <ImageView
+            android:id="@+id/landli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/landline"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Address Text -->
+        <TextView
+            android:id="@+id/landnbr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Landline Numbers: (+92-51) 4251766, 4251767, 8731506, 8731509"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Address Icon -->
+        <ImageView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_attach_email_24"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Address Text -->
+        <TextView
+            android:id="@+id/emaail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email: admissions@biit.edu.pk"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:autoLink="email" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Address Icon -->
+        <ImageView
+            android:id="@+id/fb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/facebook_color_svgrepo_com"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Address Text -->
+
+        <TextView
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="BIIT Official Facebook"
+            android:layout_marginTop="4dp"
+            android:autoLink="web" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Address Icon -->
+        <ImageView
+            android:id="@+id/ins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/instagram_svgrepo_com"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Address Text -->
+        <TextView
+            android:id="@+id/insta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BIIT Official Instagram"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:autoLink="web" />
+
+    </LinearLayout>
+
+</LinearLayout>

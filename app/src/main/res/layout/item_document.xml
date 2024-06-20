@@ -1,38 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/edittextbg"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     android:padding="6dp">
 
-    <ImageView
-        android:id="@+id/document_image"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:contentDescription="@string/document_image_desc"
-        android:src="@drawable/document" />
+        card_view:cardCornerRadius="8dp"
+        card_view:cardElevation="4dp"
+        android:layout_margin="8dp">
 
-
-
-        <TextView
-            android:id="@+id/Name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:text="Document Name"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:background="@drawable/edittextbg"
+            android:padding="6dp">
 
-        <TextView
-            android:id="@+id/aridno"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="4dp"
-            android:text="ARID No."
-            android:textSize="14sp" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/document_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/document_image_desc"
+                android:src="@drawable/document" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="Muhammad Bashir"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/arid_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2020-Arid-3922"
+                android:paddingTop="4dp"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

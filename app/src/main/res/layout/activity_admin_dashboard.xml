@@ -16,7 +16,7 @@
         android:id="@+id/admin_navigationView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:menu="@menu/admindraweritems"
+        android:layout_gravity="start"
         app:headerLayout="@layout/admin_drawer_header"
-        android:layout_gravity="start"/>
+        app:menu="@menu/admindraweritems" />
 </androidx.drawerlayout.widget.DrawerLayout>

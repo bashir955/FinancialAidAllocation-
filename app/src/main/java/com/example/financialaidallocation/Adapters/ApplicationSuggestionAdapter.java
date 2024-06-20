@@ -1,29 +1,29 @@
-
 package com.example.financialaidallocation.Adapters;
-import android.content.Context;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.financialaidallocation.Activities.NeedbaseApplication;
 import com.example.financialaidallocation.Classes.ApplicationSuggestionModel;
 import com.example.financialaidallocation.R;
-
 import java.util.List;
 
 public class ApplicationSuggestionAdapter extends RecyclerView.Adapter<ApplicationSuggestionAdapter.ApplicationViewHolder> {
 
-    private List<ApplicationSuggestionModel> applicationList;
-//    private Context context;
+    private List<ApplicationSuggestionModel> list;
+    private OnItemClickListener onItemClickListener;
 
-    public ApplicationSuggestionAdapter( List<ApplicationSuggestionModel> applicationList) {
-//        this.context = context;
-        this.applicationList=applicationList;
+    public interface OnItemClickListener {
+        void onItemClick(ApplicationSuggestionModel application);
     }
+
+    public ApplicationSuggestionAdapter(List<ApplicationSuggestionModel> applicationList, OnItemClickListener onItemClickListener) {
+        this.list = applicationList;
+        this.onItemClickListener = onItemClickListener;
+    }
+
     @NonNull
     @Override
     public ApplicationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,14 +33,16 @@ public class ApplicationSuggestionAdapter extends RecyclerView.Adapter<Applicati
 
     @Override
     public void onBindViewHolder(@NonNull ApplicationViewHolder holder, int position) {
-        ApplicationSuggestionModel application = applicationList.get(position);
-        holder.TextViewName.setText(application.getName());
-        holder.TextViewArid.setText(application.getArid_no());
+        ApplicationSuggestionModel application = list.get(position);
+        holder.TextViewName.setText(application.getRe().getName());
+        holder.TextViewArid.setText(application.getRe().getArid_no());
+
+        holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(application));
     }
 
     @Override
     public int getItemCount() {
-        return applicationList.size();
+        return list.size();
     }
 
     public static class ApplicationViewHolder extends RecyclerView.ViewHolder {
@@ -49,8 +51,8 @@ public class ApplicationSuggestionAdapter extends RecyclerView.Adapter<Applicati
 
         public ApplicationViewHolder(@NonNull View itemView) {
             super(itemView);
-            TextViewName = itemView.findViewById(R.id.Name);
-            TextViewArid = itemView.findViewById(R.id.aridno);
+            TextViewName = itemView.findViewById(R.id.name);
+            TextViewArid = itemView.findViewById(R.id.arid_no);
         }
     }
 }

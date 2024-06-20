@@ -40,6 +40,14 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.ViewHolder
         return budgets.size();
     }
 
+    // Method to add a new budget and notify the adapter
+    public void addBudget(BudgetModel budget) {
+        budgets.add(budget);
+        notifyItemInserted(budgets.size() - 1);
+    }
+
+    // Optional: You can also add a method to clear the list and update the adapter
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView session;
         public TextView amount;

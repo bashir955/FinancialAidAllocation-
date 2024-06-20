@@ -42,7 +42,7 @@ public class FacultyMemberDashboard extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        List<Student> studentList = createDummyData();
-////        List<Student> studentList = new ArrayList<>();
+//        List<Student> studentList = new ArrayList<>();
 //        // Populate studentList with data
 //
 //        adapter = new StudentRecordAdapter(studentList, this);
